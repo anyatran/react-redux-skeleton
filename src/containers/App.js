@@ -1,6 +1,6 @@
 import React from 'react'
-import Filter from './Filter'
-import Table from './Table'
+import Filter from '../components/Filter'
+import Table from '../components/Table'
 
 const App = () => {
   return(

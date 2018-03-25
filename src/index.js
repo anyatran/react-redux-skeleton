@@ -4,7 +4,7 @@ import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux' //provides a store
 import thunk from 'redux-thunk'
 import { createLogger } from 'redux-logger'
-import App from './components/App'
+import App from './containers/App'
 import rootReducer from './reducers'
 /*
 REDUCERS specify how the application's state changes in response
