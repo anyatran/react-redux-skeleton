@@ -1,0 +1,41 @@
+{
+  "name": "sqreen",
+  "version": "1.0.0",
+  "description": "sqreen project",
+  "main": "./src/entry.js",
+  "author": "Anya Tran",
+  "license": "MIT",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anyatran/sqreen.git"
+  },
+  "keywords": [
+    "react",
+    "express",
+    "webpack",
+    "es2015",
+    "javascript"
+  ],
+  "dependencies": {
+    "axios": "^0.16.1",
+    "classnames": "^2.2.5",
+    "express": "^4.13.4",
+    "prop-types": "^15.6.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.7",
+    "react-router": "^3.0.2",
+    "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0"
+  },
+  "devDependencies": {
+    "react-scripts": "^1.1.1"
+  }
+}
