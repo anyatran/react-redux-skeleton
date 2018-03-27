@@ -29,7 +29,7 @@ export const receiveData = (user, json) => ({
 
 const fetchData = user => dispatch => {
   dispatch(requestData(user))
-  return fetch(`https://api.github.com/events`)
+  return fetch(`https://api.github.com/events?page=11`)
     .then(response => response.json())
     .then(json => {
       console.log(json)

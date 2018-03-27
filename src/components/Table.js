@@ -5,12 +5,14 @@ const Table = ({ data }) => {
   return (
     <table>
       <thead>
-        <td className="table__cell table__cell-head">
-          Username
-        </td>
-        <td className="table__cell">
-          Event
-        </td>
+        <tr>
+          <td className="table__cell table__cell-head">
+            Username
+          </td>
+          <td className="table__cell">
+            Event
+          </td>
+        </tr>
       </thead>
       <tbody>
         {data.map((item, index) => (
@@ -28,5 +30,8 @@ const Table = ({ data }) => {
   )
 }
 
+Table.propTypes = {
+  data: PropTypes.array
+}
 
 export default Table

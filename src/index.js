@@ -6,6 +6,7 @@ import thunk from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 import App from './containers/App'
 import rootReducer from './reducers'
+import './styles/app.scss'
 /*
 PRINCIPLES OF REDUX:
   1. Do not mutate state; copy it. State is Read-only
