@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { fetchDataIfNeeded } from '../actions'
-import Filter from '../components/Filter'
 import Table from '../components/Table'
 
 class App extends Component {
@@ -26,18 +25,26 @@ class App extends Component {
     }
   }
 
+
+
   render() {
     const { selectedUser, data, isFetching, lastUpdated } = this.props
+    if (!isFetching) {
+
+      return (
+        <div>
+          <h1>APP</h1>
+          <p>{ lastUpdated && <span> Last Updated At: {
+            new Date(lastUpdated).toLocaleTimeString()
+          }</span>}
+          </p>
+
+          <Table data={data} />
+        </div>
+      )
+    }
     return (
-      <div>
-        <h1>APP</h1>
-        <p>{ lastUpdated && <span> Last Updated At: {
-          new Date(lastUpdated).toLocaleTimeString()
-        }</span>}
-        </p>
-        <Filter />
-        <Table data={data} />
-      </div>
+      <div>Loading...</div>
     )
   }
 }

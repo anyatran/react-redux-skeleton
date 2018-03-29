@@ -1,3 +1,5 @@
+import socketIOClient from 'socket.io-client'
+import axios from 'axios'
 export const INVALIDATE_USER = 'INVALIDATE_USER'
 export const REQUEST_DATA = 'REQUEST_DATA'
 export const RECEIVE_DATA = 'RECEIVE_DATA'
@@ -29,10 +31,14 @@ export const receiveData = (user, json) => ({
 
 const fetchData = user => dispatch => {
   dispatch(requestData(user))
-  return fetch(`https://api.github.com/events?page=11`)
-    .then(response => response.json())
+  // const socket = socketIOClient('/')
+  // socket.on('events', data => console.log(data))
+  // return fetch(`https://api.github.com/repos/rails/rails/pulls`)
+    // .then(response => response.json())
+  axios.get('/events')
+    .then(response => response.data)
     .then(json => {
-      console.log(json)
+      // console.log(json)
       dispatch(receiveData(user, json))
     })
 }

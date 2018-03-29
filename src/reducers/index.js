@@ -25,7 +25,9 @@ Note on state:
 const initialState = {
   isFetching: false,
   didInvalidate: false,
-  items: []
+  items: [],
+  from: null,
+  to: null
 }
 
 // Action creators that creates an action
@@ -57,7 +59,9 @@ const data = (state = initialState, action) => {
         isFetching: false,
         didInvalidate: false,
         items: action.data,
-        lastUpdated: action.receivedAt
+        lastUpdated: action.receivedAt,
+        to: action.data[0].created_at,
+        from: action.data[action.data.length - 1].created_at,
       }
     default:
       return state
