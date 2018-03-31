@@ -1,4 +1,4 @@
-const users = (state = [], action) => {
+const repos = (state = [], action) => {
   switch (action.type) {
     case 'ADD_USER':
       const newUser = {
@@ -12,4 +12,4 @@ const users = (state = [], action) => {
   }
 }
 
-export default users
+export default repos

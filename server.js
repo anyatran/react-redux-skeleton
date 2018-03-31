@@ -5,6 +5,11 @@ const request = require('request');
 const WebpackDevServer = require('webpack-dev-server');
 const webpack = require('webpack');
 
+const repos = {
+  'rails': 'https://api.github.com/repos/rails/rails/pulls',
+  'beets': 'https://api.github.com/repos/beetbox/beets/pulls'
+}
+
 const server = new WebpackDevServer(webpack(config), {
   historyApiFallback: true,
   publicPath: config.output.publicPath,
@@ -13,8 +18,10 @@ const server = new WebpackDevServer(webpack(config), {
   setup: function(app) {
 
     app.get('/events', (req, res) => {
+      const repo = repos[req.query.repo] || repos['rails']
+      console.log(repo)
       const options = {
-        url: 'https://api.github.com/repos/rails/rails/pulls',
+        url: repo,
         headers: {
           'User-Agent': 'anyatran'
         }

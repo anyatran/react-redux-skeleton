@@ -10,25 +10,23 @@ class App extends Component {
     dispatch: PropTypes.func.isRequired,
     isFetching: PropTypes.bool.isRequired,
     lastUpdated: PropTypes.number,
-    selectedUser: PropTypes.string.isRequired
+    selectedRepo: PropTypes.string.isRequired
   }
 
   componentDidMount() {
-    const { dispatch, selectedUser } = this.props
-    dispatch(fetchDataIfNeeded(selectedUser))
+    const { dispatch, selectedRepo } = this.props
+    dispatch(fetchDataIfNeeded(selectedRepo))
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.selectedUser !== this.props.selectedUser) {
-      const { dispatch, selectedUser } = nextProps
-      dispatch(fetchDataIfNeeded(selectedUser))
+    if (nextProps.selectedRepo !== this.props.selectedRepo) {
+      const { dispatch, selectedRepo } = nextProps
+      dispatch(fetchDataIfNeeded(selectedRepo))
     }
   }
 
-
-
   render() {
-    const { selectedUser, data, isFetching, lastUpdated } = this.props
+    const { selectedRepo, data, isFetching, lastUpdated } = this.props
     if (!isFetching) {
 
       return (
@@ -54,18 +52,18 @@ class App extends Component {
 * wrapping
 */
 const mapStateToProps = state => {
-  const { selectedUser, eventFromUser } = state
+  const { selectedRepo, eventFromRepo } = state
   const {
     isFetching,
     lastUpdated,
     items: data
-  } = eventFromUser[selectedUser] || {
+  } = eventFromRepo[selectedRepo] || {
     isFetching: true,
     items: []
   }
 
   return {
-    selectedUser,
+    selectedRepo,
     data,
     isFetching,
     lastUpdated

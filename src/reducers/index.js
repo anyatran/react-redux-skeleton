@@ -1,10 +1,9 @@
 import { combineReducers } from 'redux' // combine all reducers for a component
-import users from './users'
 import {
   INVALIDATE_USER,
   REQUEST_DATA,
   RECEIVE_DATA,
-  SELECT_USER
+  SELECT_REPO
 } from '../actions'
 
 /*
@@ -31,10 +30,10 @@ const initialState = {
 }
 
 // Action creators that creates an action
-const selectedUser = (state = 'reqctjs', action) => {
+const selectedRepo = (state = 'rails', action) => {
   switch (action.type) {
-    case SELECT_USER:
-      return action.user
+    case SELECT_REPO:
+      return action.repo
     default:
       return state
   }
@@ -68,14 +67,14 @@ const data = (state = initialState, action) => {
   }
 }
 
-const eventFromUser = (state = { }, action) => {
+const eventFromRepo = (state = { }, action) => {
   switch (action.type) {
     case INVALIDATE_USER:
     case RECEIVE_DATA:
     case REQUEST_DATA:
       return {
         ...state,
-        [action.user]: data(state[action.user], action)
+        [action.repo]: data(state[action.repo], action)
       }
     default:
       return state
@@ -83,6 +82,6 @@ const eventFromUser = (state = { }, action) => {
 }
 
 export default combineReducers({
-  selectedUser,
-  eventFromUser
+  selectedRepo,
+  eventFromRepo
 })

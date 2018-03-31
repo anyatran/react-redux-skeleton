@@ -3,7 +3,7 @@ import axios from 'axios'
 export const INVALIDATE_USER = 'INVALIDATE_USER'
 export const REQUEST_DATA = 'REQUEST_DATA'
 export const RECEIVE_DATA = 'RECEIVE_DATA'
-export const SELECT_USER = 'SELECT_USER'
+export const SELECT_REPO = 'SELECT_REPO'
 
 /*
 ACTIONS are payloads of information that send data from your
@@ -17,34 +17,34 @@ export const requestData = data => ({
   data
 })
 
-export const invalidateUser = user => ({
+export const invalidateUser = repo => ({
   type: INVALIDATE_USER,
-  user
+  repo
 })
 
-export const receiveData = (user, json) => ({
+export const receiveData = (repo, json) => ({
   type: RECEIVE_DATA,
-  user,
+  repo,
   data: json,
   receivedAt: Date.now()
 })
 
-const fetchData = user => dispatch => {
-  dispatch(requestData(user))
+const fetchData = repo => dispatch => {
+  dispatch(requestData(repo))
   // const socket = socketIOClient('/')
   // socket.on('events', data => console.log(data))
   // return fetch(`https://api.github.com/repos/rails/rails/pulls`)
     // .then(response => response.json())
-  axios.get('/events')
+  axios.get(`events?repo=${repo}`)
     .then(response => response.data)
     .then(json => {
       // console.log(json)
-      dispatch(receiveData(user, json))
+      dispatch(receiveData(repo, json))
     })
 }
 
-const shouldFetchData = (state, user) => {
-  const data = state.eventFromUser[user]
+const shouldFetchData = (state, repo) => {
+  const data = state.eventFromRepo[repo]
   if (!data) {
     return true
   }
@@ -54,8 +54,8 @@ const shouldFetchData = (state, user) => {
   return data.didInvalidate
 }
 
-export const fetchDataIfNeeded = user => (dispatch, getState) => {
-  if (shouldFetchData(getState(), user)) {
-    return dispatch(fetchData(user))
+export const fetchDataIfNeeded = repo => (dispatch, getState) => {
+  if (shouldFetchData(getState(), repo)) {
+    return dispatch(fetchData(repo))
   }
 }
